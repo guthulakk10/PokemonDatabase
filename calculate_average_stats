@@ -1,0 +1,7 @@
+DECLARE
+    avg_stats NUMBER;
+BEGIN
+    SELECT AVG(TOTAL_STATS) INTO avg_stats FROM STARTER_POKEMON;
+    DBMS_OUTPUT.PUT_LINE('The average TOTAL_STATS is ' || avg_stats);
+END;
+/
