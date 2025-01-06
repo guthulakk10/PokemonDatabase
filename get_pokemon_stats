@@ -1,0 +1,16 @@
+CREATE OR REPLACE PROCEDURE get_pokemon_stats(p_name IN VARCHAR2) AS
+BEGIN
+    FOR rec IN (
+        SELECT HP, ATTACK, DEFENSE, SPEED, TOTAL_STATS
+        FROM STARTER_POKEMON
+        WHERE POKEMON = p_name
+    ) LOOP
+        DBMS_OUTPUT.PUT_LINE('HP: ' || rec.HP || ', Attack: ' || rec.ATTACK ||
+                             ', Defense: ' || rec.DEFENSE || ', Speed: ' || rec.SPEED ||
+                             ', Total Stats: ' || rec.TOTAL_STATS);
+    END LOOP;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('No Pokémon found with the name ' || p_name);
+END;
+/
