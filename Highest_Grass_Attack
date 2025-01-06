@@ -1,0 +1,14 @@
+DECLARE
+    v_name VARCHAR2(50);
+    v_attack NUMBER;
+BEGIN
+    SELECT POKEMON, ATTACK INTO v_name, v_attack
+    FROM STARTER_POKEMON
+    WHERE ATTACK = (
+        SELECT MAX(ATTACK)
+        FROM STARTER_POKEMON
+        WHERE TYPE1 = 'Grass'
+    );
+    DBMS_OUTPUT.PUT_LINE('The strongest Grass Pokémon is ' || v_name || ' with an ATTACK of ' || v_attack);
+END;
+/
