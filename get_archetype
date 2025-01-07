@@ -1,0 +1,14 @@
+CREATE OR REPLACE PROCEDURE get_archetype_pokemon(p_archetype IN VARCHAR2) AS
+BEGIN
+    FOR rec IN (
+        SELECT POKEMON
+        FROM STARTER_POKEMON
+        WHERE BATTLE_ARCHETYPE = p_archetype
+    ) LOOP
+        DBMS_OUTPUT.PUT_LINE(rec.POKEMON);
+    END LOOP;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('No Pokémon found with the battle archetype ' || p_archetype);
+END;
+/
