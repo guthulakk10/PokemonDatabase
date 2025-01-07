@@ -1,0 +1,14 @@
+REATE OR REPLACE PROCEDURE get_pokemon_by_type(p_type IN VARCHAR2) AS
+BEGIN
+    FOR rec IN (
+        SELECT POKEMON
+        FROM STARTER_POKEMON
+        WHERE TYPE1 = p_type
+    ) LOOP
+        DBMS_OUTPUT.PUT_LINE(rec.POKEMON);
+    END LOOP;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('No Pokémon found with the type ' || p_type);
+END;
+/
